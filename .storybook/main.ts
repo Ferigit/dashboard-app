@@ -10,11 +10,22 @@ const config: StorybookConfig = {
     "@chromatic-com/storybook",
     "@storybook/addon-docs",
     "@storybook/addon-a11y",
-    "@storybook/addon-vitest"
+    "@storybook/addon-vitest",
+    
   ],
   "framework": {
     "name": "@storybook/react-vite",
     "options": {}
-  }
+  },
+  staticDirs: ['../public'],
+  typescript: {
+    reactDocgen: 'react-docgen-typescript',
+    reactDocgenTypescriptOptions: {
+      compilerOptions: {
+        allowSyntheticDefaultImports: false,
+        esModuleInterop: false,
+      },
+    },
+  },
 };
 export default config;
