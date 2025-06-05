@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import useAuthStore from '../../stores/auth.store';
 import { useEffect } from 'react';
 import FormInput from '../../common/FormInput';
-import Button from '../../common/Button';
+import Button from '../../common/Button/Button';
 
 const loginSchema = z.object({
   email: z.string().email('Invalid email address'),

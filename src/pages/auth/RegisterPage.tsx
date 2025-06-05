@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import useAuthStore from '../../stores/auth.store';
 import { useEffect } from 'react';
 import FormInput from '../../common/FormInput';
-import Button from '../../common/Button';
+import Button from '../../common/Button/Button';
 
 const registerSchema = z
   .object({
@@ -33,7 +33,7 @@ export default function RegisterPage() {
   });
 
   const onSubmit = async (data: RegisterFormData) => {
-    const success = await registerUser(data.name, data.email, data.password);
+    const success = await registerUser(data.name, data.email);
     if (success) {
       navigate('/dashboard');
     }

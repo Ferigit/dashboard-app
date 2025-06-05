@@ -10,7 +10,7 @@ export interface AuthState {
   isAuthenticated: boolean;
   isLoading: boolean;
   error: string | null;
-  login: (email: string) => Promise<boolean>;
+  login: (email: string, password:string) => Promise<boolean>;
   register: (name: string, email: string) => Promise<boolean>;
   logout: () => void;
 }
