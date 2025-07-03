@@ -2,8 +2,8 @@ import { usePost } from '../../hooks/api/useApi';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import FormInput from '../../common/FormInput';
-import Button from '../../common/Button';
+// import FormInput from '../../common/FormInput';
+// import Button from '../../common/Button';
 
 const userSchema = z.object({
     name: z.string().min(1, 'Name is required'),
@@ -24,7 +24,7 @@ export function CreateUserForm() {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
-            <FormInput
+            {/* <FormInput
                 label="Name"
                 {...register('name')}
                 error={errors.name}
@@ -37,7 +37,7 @@ export function CreateUserForm() {
             />
             <Button type="submit" disabled={isPending}>
                 {isPending ? 'Creating...' : 'Create User'}
-            </Button>
+            </Button> */}
         </form>
     );
 }
