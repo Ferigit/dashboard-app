@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import useAuthStore from '../../stores/auth.store';
 import { useEffect } from 'react';
 import FormInput from '../../common/FormInput';
-import Button from '../../common/Button';
+import Button from '../../common/Button/Button';
 
 const registerSchema = z
   .object({
@@ -14,7 +14,7 @@ const registerSchema = z
     password: z.string().min(6, 'Password must be at least 6 characters'),
     confirmPassword: z.string().min(1, 'Please confirm your password'),
   })
-  .refine((data) => data.password === data.confirmPassword, {
+  .refine((data:any) => data.password === data.confirmPassword, {
     message: "Passwords don't match",
     path: ['confirmPassword'],
   });
@@ -33,7 +33,7 @@ export default function RegisterPage() {
   });
 
   const onSubmit = async (data: RegisterFormData) => {
-    const success = await registerUser(data.name, data.email, data.password);
+    const success = await registerUser(data.name, data.email);
     if (success) {
       navigate('/dashboard');
     }
