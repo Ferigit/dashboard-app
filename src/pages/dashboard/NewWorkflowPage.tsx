@@ -131,12 +131,12 @@ const mockChatMessages = [
 ];
 
 // File Upload Component
-const FileUploadInterface = ({ agent }) => {
-  const [uploadedFiles, setUploadedFiles] = useState([]);
+const FileUploadInterface = ({ agent }: any) => {
+  const [uploadedFiles, setUploadedFiles] = useState<any>([]);
   const [dragActive, setDragActive] = useState(false);
 
-  const handleFileUpload = (files) => {
-    const newFiles = Array.from(files).map((file, index) => ({
+  const handleFileUpload = (files: any) => {
+    const newFiles = Array.from(files).map((file: any, index) => ({
       id: Date.now() + index,
       name: file.name,
       size: formatFileSize(file.size),
@@ -144,11 +144,11 @@ const FileUploadInterface = ({ agent }) => {
       uploadedAt: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' }),
       status: 'uploaded'
     }));
-    
-    setUploadedFiles(prev => [...prev, ...newFiles]);
+
+    setUploadedFiles((prev: any) => [...prev, ...newFiles]);
   };
 
-  const formatFileSize = (bytes) => {
+  const formatFileSize = (bytes: any) => {
     if (bytes === 0) return '0 Bytes';
     const k = 1024;
     const sizes = ['Bytes', 'KB', 'MB', 'GB'];
@@ -156,7 +156,7 @@ const FileUploadInterface = ({ agent }) => {
     return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
   };
 
-  const handleDrag = (e) => {
+  const handleDrag = (e: any) => {
     e.preventDefault();
     e.stopPropagation();
     if (e.type === "dragenter" || e.type === "dragover") {
@@ -166,35 +166,35 @@ const FileUploadInterface = ({ agent }) => {
     }
   };
 
-  const handleDrop = (e) => {
+  const handleDrop = (e: any) => {
     e.preventDefault();
     e.stopPropagation();
     setDragActive(false);
-    
+
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
       handleFileUpload(e.dataTransfer.files);
     }
   };
 
-  const handleFileInput = (e) => {
+  const handleFileInput = (e: any) => {
     if (e.target.files && e.target.files[0]) {
       handleFileUpload(e.target.files);
     }
   };
 
-  const removeFile = (fileId) => {
-    setUploadedFiles(prev => prev.filter(file => file.id !== fileId));
+  const removeFile = (fileId: any) => {
+    setUploadedFiles((prev: any) => prev.filter((file: any) => file.id !== fileId));
   };
 
   const processFiles = () => {
     // Simulate file processing
-    setUploadedFiles(prev => prev.map(file => ({
+    setUploadedFiles((prev: any) => prev.map((file: any) => ({
       ...file,
       status: 'processing'
     })));
 
     setTimeout(() => {
-      setUploadedFiles(prev => prev.map(file => ({
+      setUploadedFiles((prev: any) => prev.map((file: any) => ({
         ...file,
         status: 'completed'
       })));
@@ -212,7 +212,7 @@ const FileUploadInterface = ({ agent }) => {
               Upload Files for {agent.name}
             </h3>
             <p className="text-gray-600">
-              {agent.name === "DataCollectorBot" 
+              {agent.name === "DataCollectorBot"
                 ? "Upload data files (CSV, JSON, XML) for processing and analysis."
                 : "Upload files that need to be processed or converted into reports."
               }
@@ -221,11 +221,10 @@ const FileUploadInterface = ({ agent }) => {
 
           {/* Drag and Drop Zone */}
           <div
-            className={`border-2 border-dashed rounded-lg p-8 text-center transition-colors ${
-              dragActive 
-                ? 'border-blue-500 bg-blue-50' 
-                : 'border-gray-300 bg-gray-50 hover:border-gray-400'
-            }`}
+            className={`border-2 border-dashed rounded-lg p-8 text-center transition-colors ${dragActive
+              ? 'border-blue-500 bg-blue-50'
+              : 'border-gray-300 bg-gray-50 hover:border-gray-400'
+              }`}
             onDragEnter={handleDrag}
             onDragLeave={handleDrag}
             onDragOver={handleDrag}
@@ -261,7 +260,7 @@ const FileUploadInterface = ({ agent }) => {
                 <h4 className="text-md font-semibold text-gray-800">
                   Uploaded Files ({uploadedFiles.length})
                 </h4>
-                {uploadedFiles.some(file => file.status === 'uploaded') && (
+                {uploadedFiles.some((file: any) => file.status === 'uploaded') && (
                   <button
                     onClick={processFiles}
                     className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm transition-colors flex items-center"
@@ -273,7 +272,7 @@ const FileUploadInterface = ({ agent }) => {
               </div>
 
               <div className="space-y-3 max-h-96 overflow-y-auto">
-                {uploadedFiles.map(file => (
+                {uploadedFiles.map((file: any) => (
                   <div key={file.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                     <div className="flex items-center flex-1">
                       <File size={24} className="text-gray-400 mr-3" />
@@ -284,7 +283,7 @@ const FileUploadInterface = ({ agent }) => {
                         </div>
                       </div>
                     </div>
-                    
+
                     <div className="flex items-center space-x-2">
                       {file.status === 'processing' && (
                         <div className="flex items-center text-blue-600">
@@ -304,7 +303,7 @@ const FileUploadInterface = ({ agent }) => {
                           <span className="text-sm">Ready</span>
                         </div>
                       )}
-                      
+
                       <button
                         onClick={() => removeFile(file.id)}
                         className="text-red-500 hover:text-red-700 p-1"
@@ -324,13 +323,13 @@ const FileUploadInterface = ({ agent }) => {
 };
 
 // Chat Interface Component
-const ChatInterface = ({ agent, chatMessages, chatInput, setChatInput, handleSendMessage }) => {
+const ChatInterface = ({ agent, chatMessages, chatInput, setChatInput, handleSendMessage }: any) => {
   return (
     <>
       {/* Chat Messages */}
       <div className="flex-1 overflow-y-auto p-6 bg-white">
         <div className="space-y-6">
-          {chatMessages.map(message => (
+          {chatMessages.map((message: any) => (
             <div
               key={message.id}
               className={`flex ${message.sender === 'User' ? 'justify-end' : 'justify-start'}`}
@@ -386,7 +385,7 @@ const ChatInterface = ({ agent, chatMessages, chatInput, setChatInput, handleSen
 const AgentInteractionUI = () => {
   const [selectedAgent, setSelectedAgent] = useState(mockAgents[1].id);
   const [chatInput, setChatInput] = useState("");
-  const [chatMessages, setChatMessages] = useState(mockChatMessages);
+  const [chatMessages, setChatMessages] = useState<any>(mockChatMessages);
   const [activeTab, setActiveTab] = useState('logs');
 
   const currentAgent = mockAgents.find(agent => agent.id === selectedAgent);
@@ -413,7 +412,7 @@ const AgentInteractionUI = () => {
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })
       };
 
-      setChatMessages((prev) => [...prev, agentResponse]);
+      setChatMessages((prev: any) => [...prev, agentResponse]);
     }, 1500);
   };
 
@@ -538,7 +537,7 @@ const AgentInteractionUI = () => {
 
         {/* Conditional Content Based on Agent Type */}
         {currentAgent?.agentType === 'chatBot' ? (
-          <ChatInterface 
+          <ChatInterface
             agent={currentAgent}
             chatMessages={chatMessages}
             chatInput={chatInput}
