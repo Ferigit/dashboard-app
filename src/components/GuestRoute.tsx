@@ -9,7 +9,7 @@ export default function GuestRoute() {
 
   useEffect(() => {
     if (!isLoading && isAuthenticated) {
-      navigate('/dashboard');
+      // navigate('/dashboard');
     }
   }, [isAuthenticated, isLoading, navigate]);
 

@@ -1,8 +1,11 @@
 import { createBrowserRouter } from 'react-router-dom';
 import App from '../App';
 import DashboardLayout from '../layouts/DashboardLayout';
+import AgentsPage from '../pages/dashboard/AgentsPage';
 import DashboardPage from '../pages/dashboard/DashboardPage';
-import AnalyticsPage from '../pages/dashboard/AnalyticsPage';
+import WorkflowsPage from '../pages/dashboard/WorkflowsPage';
+import WorkflowPage from '../pages/dashboard/WorkflowPage';
+import NewWorkflowPage from '../pages/dashboard/NewWorkflowPage';
 import SettingsPage from '../pages/dashboard/SettingsPage';
 import NotFoundPage from '../pages/NotFoundPage';
 import LoginPage from '../pages/auth/LoginPage';
@@ -41,9 +44,22 @@ export const router = createBrowserRouter([
                 element: <DashboardPage />,
               },
               {
-                path: 'analytics',
-                element: <AnalyticsPage />,
+                path: 'new-workflow',
+                element: <NewWorkflowPage />,
               },
+              {
+                path: 'workflows',
+                element: <WorkflowsPage />,
+              },
+              {
+                path: 'workflow/:id',
+                element: <WorkflowPage />,
+              },
+              {
+                path: 'agents',
+                element: <AgentsPage />,
+              },
+
               {
                 path: 'settings',
                 element: <SettingsPage />,

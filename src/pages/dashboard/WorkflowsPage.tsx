@@ -5,7 +5,6 @@ import {
   Play, Plus, RefreshCw, Settings, User
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-
 // UI Preview Component
 const D8taAppsPlatformWorkflowPreview = () => {
   const [selectedWorkflows, setSelectedWorkflows] = useState([101, 104]);
@@ -136,10 +135,10 @@ const D8taAppsPlatformWorkflowPreview = () => {
                           <li key={workflow.id}>
                             <div className={`flex items-center py-2 px-2 rounded cursor-pointer ${workflow.selected ? 'bg-blue-900 text-white' : 'hover:bg-blue-700'}`}>
                               <div className={`w-2 h-2 rounded-full mr-2 flex-shrink-0 ${workflow.status === 'completed' ? 'bg-green-400' :
-                                workflow.status === 'in_progress' ? 'bg-blue-400' :
-                                  workflow.status === 'error' ? 'bg-red-400' :
-                                    workflow.status === 'user_input' ? 'bg-yellow-400' :
-                                      'bg-gray-400'
+                                  workflow.status === 'in_progress' ? 'bg-blue-400' :
+                                    workflow.status === 'error' ? 'bg-red-400' :
+                                      workflow.status === 'user_input' ? 'bg-yellow-400' :
+                                        'bg-gray-400'
                                 }`}></div>
                               <span className="truncate">{workflow.name}</span>
                             </div>
@@ -187,7 +186,7 @@ const D8taAppsPlatformWorkflowPreview = () => {
                     <Play size={14} />
                     <span>Start 2 Selected</span>
                   </button>
-                  <button onClick={() => navigate('/dashboard')} className="flex items-center gap-1 bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded-md text-xs">
+                  <button onClick={()=>navigate('/dashboard/new-workflow')} className="flex items-center gap-1 bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded-md text-xs">
                     <Plus size={14} />
                     <span>New Instance</span>
                   </button>
@@ -274,6 +273,7 @@ const D8taAppsPlatformWorkflowPreview = () => {
                 <div className="grid grid-cols-2 gap-4">
                   {mockWorkflows.map((workflow) => (
                     <div
+                      onClick={() => navigate(`/dashboard/workflow/${workflow.id}`)}
                       key={workflow.id}
                       className={`bg-white rounded-lg shadow-sm overflow-hidden cursor-pointer border ${workflow.selected ? 'border-blue-500 ring-2 ring-blue-200' : 'border-gray-100'}`}
                     >
@@ -286,10 +286,10 @@ const D8taAppsPlatformWorkflowPreview = () => {
                             <h2 className="text-sm font-semibold text-gray-800">{workflow.name}</h2>
                           </div>
                           <div className={`flex items-center gap-1 ${workflow.status === 'error' ? 'text-red-600' :
-                            workflow.status === 'completed' ? 'text-green-600' :
-                              workflow.status === 'in_progress' ? 'text-blue-600' :
-                                workflow.status === 'user_input' ? 'text-yellow-600' :
-                                  'text-gray-500'
+                              workflow.status === 'completed' ? 'text-green-600' :
+                                workflow.status === 'in_progress' ? 'text-blue-600' :
+                                  workflow.status === 'user_input' ? 'text-yellow-600' :
+                                    'text-gray-500'
                             }`}>
                             {workflow.status === 'pending' && <Clock size={14} />}
                             {workflow.status === 'in_progress' && <RefreshCw size={14} className="animate-spin" />}
@@ -322,10 +322,10 @@ const D8taAppsPlatformWorkflowPreview = () => {
                           <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
                             <div
                               className={`h-full ${workflow.status === 'completed' ? 'bg-green-500' :
-                                workflow.status === 'error' ? 'bg-red-500' :
-                                  workflow.status === 'in_progress' ? 'bg-blue-500' :
-                                    workflow.status === 'user_input' ? 'bg-yellow-500' :
-                                      'bg-gray-300'
+                                  workflow.status === 'error' ? 'bg-red-500' :
+                                    workflow.status === 'in_progress' ? 'bg-blue-500' :
+                                      workflow.status === 'user_input' ? 'bg-yellow-500' :
+                                        'bg-gray-300'
                                 }`}
                               style={{ width: `${workflow.progress}%` }}
                             ></div>
